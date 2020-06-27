@@ -1,0 +1,129 @@
+body
+{
+  font-family:sans-serif;
+  padding:1em;
+  background-color:#F8EBDA;
+  color:#4A3630;
+}
+
+h1, h2, h3, p, img
+{
+  margin:0px;
+  padding:0px;
+  border:none;
+}
+
+abbr
+{
+  text-decoration:none;
+  border-bottom:none;
+}
+
+h1, h2, h3, p
+{
+  font-variant:normal;
+  font-style:normal;
+  font-weight:normal;
+  font-size:1em;
+}
+
+h1, h2
+{font-weight:bold;}
+
+h1
+{margin:0px 0px 0.4em 0px;}
+
+h2
+{
+ padding:0.6em 0px 0.3em 0.4em;
+ font-size:0.8em;
+}
+
+h2:after
+{content:":";}
+
+div
+{font-size:0.8em;}
+ 
+p
+{
+  font-size:0.8em;
+  padding:0px 0px 0.2em 1em;
+}
+
+div.poster
+{
+ margin:0px 0px 1.4em 2em;
+ padding:0px;
+ border:0.3em solid #DED0A6;
+ float:right;
+}
+
+h2.episodes
+{
+ padding-left:1em;
+}
+
+ul.episodes, ul.sound, ul.smovielist
+{
+ margin:0px 0px 0px 1em;
+ padding:0px 0px 0.3em 0px;
+ font-size:0.8em;
+}
+
+ul.episodes li, ul.sound li, ul.smovielist li
+{
+ margin:0px 0px 0px 0px;
+ padding:0px 0px 0.2em 0px;
+ list-style-type:none;
+}
+
+.eptitle
+{font-weight:bold;}
+
+a:link
+{color:#003399;}
+a:visited
+{color:#463089;}
+a:focus, a:hover, a:active
+{color:#0655FF;}
+a:visited:focus, a:visited:hover, a:visited:active
+{color:#6B41DF;}
+
+
+@media print
+{
+  body
+  {
+   font-size:11pt;
+   font-family:Helvetica, sans-serif;
+   background-color:#FFFFFF;
+   color:#000000;
+   overflow:visible;
+  }
+  
+  a, a:link, a:visited, a:focus, a:hover, a:active, a:visited:focus, a:visited:hover, a:visited:active
+  {
+   text-decoration:none;
+   outline:none;
+   color:#000000;
+  }
+
+  h1
+  {
+    font-family:sans-serif;
+    padding-top:0px;
+    padding-bottom:0.7em;
+    margin:0px;
+    font-size:1em;
+  }
+
+  h1, h2, h3, h4
+  {page-break-after:avoid;}
+  
+  div.poster
+  {
+    margin-top:0.6em;
+    border:1px solid black;
+  }
+}

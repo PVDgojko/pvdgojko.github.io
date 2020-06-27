@@ -1,0 +1,141 @@
+   document.write('<div id="filtergenre" onclick="parent.isgoodclick=true;">');
+   document.write('<form action="#">');
+   document.write('  <div class="filterinfo">Show only...<br>&nbsp;</div>');
+//genreloop:   document.write('  <div class="filter"><input type="radio" class="radiobutton" name="filter0" value="" onclick="showfilter(0,%valuenr%);">&nbsp;%value%</div>');
+   document.write('  <div class="filter"><input type="radio" class="radiobutton" name="filter0" value="" onclick="showfilter(0,-1);" checked>&nbsp;All</div>');
+   document.write('</div>');
+
+   document.write('<div id="filtercategory" onclick="parent.isgoodclick=true;">');
+   document.write('<form action="#">');
+   document.write('  <div class="filterinfo">Show only...<br>&nbsp;</div>');
+//categoryloop:   document.write('  <div class="filter"><input type="radio" class="radiobutton" name="filter1" value="" onclick="showfilter(1,%valuenr%);">&nbsp;%value%</div>');
+   document.write('  <div class="filter"><input type="radio" class="radiobutton" name="filter1" value="" onclick="showfilter(1,-1);" checked>&nbsp;All</div>');
+   document.write('</div>');
+
+   document.write('<div id="filterlanguage" onclick="parent.isgoodclick=true;">');
+   document.write('<form action="#">');
+   document.write('  <div class="filterinfo">Show only...<br>&nbsp;</div>');
+//languageloop:   document.write('  <div class="filter"><input type="radio" class="radiobutton" name="filter2" value="" onclick="showfilter(2,%valuenr%);">&nbsp;%value%</div>');
+   document.write('  <div class="filter"><input type="radio" class="radiobutton" name="filter2" value="" onclick="showfilter(2,-1);" checked>&nbsp;All</div>');
+   document.write('</div>');
+
+   var filteraktiv = false;
+   var filterar = new Array("filtergenre", "filtercategory", "filterlanguage")
+   var filenrs = new Array(3);
+//genrear:   filenrs[0] = new Array(%amountgenre%)
+//categoryar:   filenrs[1] = new Array(%amountcategory%)
+//languagear:   filenrs[2] = new Array(%amountlanguage%)
+//genreloopfilenrs:   filenrs[0][%valuenr%] = new Array(%valuefilenrarray%)
+//categoryloopfilenrs:   filenrs[1][%valuenr%] = new Array(%valuefilenrarray%)
+//languageloopfilenrs:   filenrs[2][%valuenr%] = new Array(%valuefilenrarray%)
+
+   function showfilterx(fc,x)
+   {
+     var i;
+     var j;
+     var k;
+     var pos;
+     var lis = document.getElementById("list").getElementsByTagName("li");
+     var ul = document.createElement("ul");
+     xs = new Array();
+     siz=lis.length;
+     var partof;
+     var arl = filenrs[fc][x].length;
+     var test;
+     for (var i=siz-1; i>=0; i--)
+     {xs.push(lis[i]);}
+     document.getElementById("list").removeChild(document.getElementById("list").firstChild);
+     k=0;
+     for (i=0; i<siz; i++)
+     {
+       j=k;
+       partof=false;
+       while (j<arl && !partof)
+       {
+         test = xs[xs.length-1].getElementsByTagName("a")[0].href
+         pos = test.lastIndexOf("e");
+         if (pos>0 && pos+1<test.length-5 && test.substring(pos+1,test.length-5)==filenrs[fc][x][j])
+         {
+           test = filenrs[fc][x][j];
+           filenrs[fc][x][j]=filenrs[fc][x][k];
+           filenrs[fc][x][k]=test;
+           k++;
+           partof=true;
+         }
+         else
+         {j++;}
+       }
+       if (!partof)
+       {
+         xs[xs.length-1].style.display="none";
+       }
+       ul.appendChild(xs.pop());
+     }
+     document.getElementById("list").appendChild(ul);
+     var w = document.getElementById("wait");
+     if (w) {w.style.display="none";}
+     filteraktiv=true;
+   }
+   
+   function showfilter(fc,x)
+   {
+     var w = document.getElementById("sort");
+     var radios = document.getElementById("mcount").getElementsByTagName("input");
+
+     w.style.display="none";
+     issortmenuactive=false;
+     w = document.getElementById(filterar[fc]);
+     w.style.display="none";
+     if (x<0)
+     {
+       if (radios && radios[1] && radios[1].checked==true)
+       {
+       	  w = document.getElementById("wait");
+       	  if (w) {w.style.display="block";}
+       	  filteraktiv=false;
+       	  var t=setTimeout("resetfilters(-1);showallx();shownewestx();",200);
+       }
+       else
+       {
+       	  showall();
+          resetradios();
+          filteraktiv=false;
+       }
+       return;
+     }
+     if (radios && radios[0]) {radios[0].checked = false;}
+     w = document.getElementById("wait");
+     if (w) {w.style.display="block";}
+     if (x>=0 && filteraktiv)
+     {
+       resetfilters(fc);
+       if (radios && radios[1] && radios[1].checked==true)
+       {var t=setTimeout("showallx();shownewestx();showfilterx(" + fc + "," + x + ");",200);}
+       else
+       {var t=setTimeout("showallx();showfilterx(" + fc + "," + x + ");",200);}
+     }
+     else
+     {var t=setTimeout("showfilterx(" + fc + "," + x + ");",200);}
+   }
+   
+   function showfiltermenu(x)
+   {
+     var w;
+     var i;
+     for (i=0; i<filterar.length; i++)
+     {
+       w = document.getElementById(filterar[i]);
+       if (i==x)
+       {
+       	   if (w && (!w.style || w.style.display!="block"))
+       	   {w.style.display="block";}
+       	   else
+       	   {w.style.display="none";}
+       }
+       else
+       {
+       	   if (w)
+       	   {w.style.display="none";}
+       }
+     }
+   }

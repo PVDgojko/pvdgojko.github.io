@@ -1,0 +1,6 @@
+//all: document.write('<form action="#">')
+//all: document.write('<div class="filterinfo">Filter...<br>&nbsp;</div>')
+//genre: document.write('<div class="filterbutton"><input type="button" name="genre" value="Genre..." onclick="showfiltermenu(0);"></div>')
+//category: document.write('<div class="filterbutton"><input type="button" name="category" value="Category..." onclick="showfiltermenu(1);"></div>')
+//language: document.write('<div class="filterbutton"><input type="button" name="language" value="Language..." onclick="showfiltermenu(2);"></div>')
+//all: document.write('</form>')

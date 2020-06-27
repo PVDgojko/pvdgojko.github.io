@@ -1,0 +1,18 @@
+%HEAD%<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" type="text/css" href="./css/frame.css">
+  <title>Composer: {%value=composers}</title>
+</head>
+<body onclick="parent.hideall();">
+  <h1>Composer: {%value=composers}</h1>
+  <h2>Other entries with the name {%value=composers}</h2>
+  <ul class="smovielist">%HEAD%
+    <li><a href="{%value=recordfile}">{%value=title}</a></li>%FOOT%
+  </ul>
+</body>
+</html>
+%FOOT%
